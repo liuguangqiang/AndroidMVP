@@ -1,7 +1,7 @@
 package com.liuguangqiang.android.sample.ui;
 
 
-import com.liuguangqiang.android.sample.BaseUi;
+import com.liuguangqiang.android.mvp.BaseUi;
 
 /**
  * Created by Eric on 15/5/8.

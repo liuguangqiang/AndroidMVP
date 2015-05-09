@@ -1,6 +1,6 @@
 package com.liuguangqiang.android.sample.presenter;
 
-import com.liuguangqiang.android.sample.Presenter;
+import com.liuguangqiang.android.mvp.Presenter;
 import com.liuguangqiang.android.sample.model.MainModel;
 import com.liuguangqiang.android.sample.ui.MainUi;
 import com.liuguangqiang.android.sample.ui.MainUiCallback;

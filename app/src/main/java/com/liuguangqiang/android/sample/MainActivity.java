@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
 
+import com.liuguangqiang.android.mvp.Presenter;
 import com.liuguangqiang.android.sample.presenter.MainPresenter;
 import com.liuguangqiang.android.sample.ui.MainUi;
 import com.liuguangqiang.android.sample.ui.MainUiCallback;
