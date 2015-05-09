@@ -1,4 +1,4 @@
-package com.liuguangqiang.android.sample;
+package com.liuguangqiang.android.mvp;
 
 /**
  * Created by Eric on 15/5/9.
