@@ -16,18 +16,20 @@ public class MainPresenter extends Presenter<MainUi, MainUiCallback> {
         mMainModel = new MainModel();
     }
 
-    public MainPresenter(MainModel mainModel) {
-        mMainModel = mainModel;
-    }
-
     @Override
     protected void populateUi(MainUi ui) {
         ui.showHello(mMainModel.getShowHello());
     }
 
     @Override
-    protected MainUiCallback createUiCallback(MainUi ui) {
-        return null;
+    protected MainUiCallback createUiCallback(final MainUi ui) {
+        return new MainUiCallback() {
+            @Override
+            public void printHello() {
+                ui.showHello(mMainModel.getShowHello());
+                ui.setHelloText(mMainModel.getShowHello());
+            }
+        };
     }
 
 }

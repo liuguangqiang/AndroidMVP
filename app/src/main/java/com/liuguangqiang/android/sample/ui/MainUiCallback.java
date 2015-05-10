@@ -5,4 +5,6 @@ package com.liuguangqiang.android.sample.ui;
  */
 public interface MainUiCallback {
 
+    void printHello();
+
 }

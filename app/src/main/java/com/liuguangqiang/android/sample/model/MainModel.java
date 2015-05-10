@@ -6,7 +6,7 @@ package com.liuguangqiang.android.sample.model;
 public class MainModel {
 
     public String getShowHello() {
-        return "Hello! I am MVP.";
+        return "Hi! I am MVP.";
     }
 
 }
