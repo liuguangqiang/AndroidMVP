@@ -31,7 +31,7 @@ public abstract class Presenter<U extends BaseUi<UC>, UC> {
     protected abstract UC createUiCallback(U ui);
 
     private void checkArgument(U ui) {
-        if (ui == null) throw new IllegalArgumentException("ui can not be null");
+        if (ui == null) throw new IllegalArgumentException("Presenter can not attach or detach any null object!");
     }
 
 }
