@@ -9,4 +9,9 @@ public class MainModel {
         return "Hi! I am MVP.";
     }
 
+    public String getSuccessTxt() {
+        return "congratulations! Login successful!";
+    }
+
+
 }

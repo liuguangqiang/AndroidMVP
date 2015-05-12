@@ -25,9 +25,9 @@ public class MainPresenter extends Presenter<MainUi, MainUiCallback> {
     protected MainUiCallback createUiCallback(final MainUi ui) {
         return new MainUiCallback() {
             @Override
-            public void printHello() {
-                ui.showHello(mMainModel.getShowHello());
-                ui.setHelloText(mMainModel.getShowHello());
+            public void login(String username, String password) {
+                //TODO login
+                ui.showSignSuccess(mMainModel.getSuccessTxt());
             }
         };
     }

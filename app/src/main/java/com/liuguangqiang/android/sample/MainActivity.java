@@ -1,47 +1,41 @@
 package com.liuguangqiang.android.sample;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.liuguangqiang.android.mvp.BaseUi;
 import com.liuguangqiang.android.mvp.Presenter;
+import com.liuguangqiang.android.mvp.app.MVPActivity;
 import com.liuguangqiang.android.sample.presenter.MainPresenter;
 import com.liuguangqiang.android.sample.ui.MainUi;
 import com.liuguangqiang.android.sample.ui.MainUiCallback;
 
+public class MainActivity extends MVPActivity implements MainUi, View.OnClickListener {
 
-public class MainActivity extends ActionBarActivity implements MainUi, View.OnClickListener {
+    private Button btnSignIn;
+    private EditText etUserName;
+    private EditText etPassword;
 
-    private Button btnTest;
-    private TextView tvTest;
-
-    Presenter mPresenter;
-    MainUiCallback mCallback;
+    private MainUiCallback mCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPresenter = new MainPresenter();
         initView();
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_test:
-                mCallback.printHello();
-                break;
-        }
+    public Presenter setPresenter() {
+        return new MainPresenter();
     }
 
-    private void initView() {
-        btnTest = (Button) findViewById(R.id.btn_test);
-        tvTest = (TextView) findViewById(R.id.tv_test);
-        btnTest.setOnClickListener(this);
+    @Override
+    public BaseUi setUi() {
+        return this;
     }
 
     @Override
@@ -50,15 +44,19 @@ public class MainActivity extends ActionBarActivity implements MainUi, View.OnCl
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mPresenter.attach(this);
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_sign:
+                mCallback.login(etUserName.getText().toString(), etPassword.getText().toString());
+                break;
+        }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mPresenter.detach(this);
+    private void initView() {
+        btnSignIn = (Button) findViewById(R.id.btn_sign);
+        btnSignIn.setOnClickListener(this);
+        etUserName = (EditText) findViewById(R.id.et_username);
+        etPassword = (EditText) findViewById(R.id.et_password);
     }
 
     @Override
@@ -67,7 +65,7 @@ public class MainActivity extends ActionBarActivity implements MainUi, View.OnCl
     }
 
     @Override
-    public void setHelloText(String txt) {
-        tvTest.setText(txt);
+    public void showSignSuccess(String txt) {
+        Toast.makeText(getApplicationContext(), txt, Toast.LENGTH_LONG).show();
     }
 }

@@ -5,6 +5,6 @@ package com.liuguangqiang.android.sample.ui;
  */
 public interface MainUiCallback {
 
-    void printHello();
+    void login(String username, String password);
 
 }

@@ -10,6 +10,6 @@ public interface MainUi extends BaseUi<MainUiCallback> {
 
     void showHello(String HelloMVP);
 
-    void setHelloText(String txt);
+    void showSignSuccess(String txt);
 
 }
