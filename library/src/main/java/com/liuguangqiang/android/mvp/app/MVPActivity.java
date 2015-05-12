@@ -1,7 +1,10 @@
-package com.liuguangqiang.android.mvp;
+package com.liuguangqiang.android.mvp.app;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+
+import com.liuguangqiang.android.mvp.BaseUi;
+import com.liuguangqiang.android.mvp.Presenter;
 
 /**
  * Created by Eric on 15/5/11.
@@ -39,6 +42,5 @@ public class MVPActivity extends ActionBarActivity {
             presenter.detach(baseUi);
         super.onPause();
     }
-
-
+    
 }

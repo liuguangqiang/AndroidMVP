@@ -43,5 +43,4 @@ public class MVPFragment extends Fragment {
         super.onPause();
     }
 
-
 }
