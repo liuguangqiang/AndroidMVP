@@ -1,8 +1,6 @@
 package com.liuguangqiang.android.sample;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,11 +11,17 @@ import com.liuguangqiang.android.sample.presenter.MainPresenter;
 import com.liuguangqiang.android.sample.ui.MainUi;
 import com.liuguangqiang.android.sample.ui.MainUiCallback;
 
-public class MainActivity extends MVPActivity implements MainUi, View.OnClickListener {
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
-    private Button btnSignIn;
-    private EditText etUserName;
-    private EditText etPassword;
+public class MainActivity extends MVPActivity implements MainUi {
+
+    @InjectView(R.id.et_username)
+    EditText etUserName;
+
+    @InjectView(R.id.et_password)
+    EditText etPassword;
 
     private MainUiCallback mCallback;
 
@@ -25,7 +29,7 @@ public class MainActivity extends MVPActivity implements MainUi, View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
+        ButterKnife.inject(this);
     }
 
     @Override
@@ -43,20 +47,9 @@ public class MainActivity extends MVPActivity implements MainUi, View.OnClickLis
         mCallback = callback;
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_sign:
-                mCallback.login(etUserName.getText().toString(), etPassword.getText().toString());
-                break;
-        }
-    }
-
-    private void initView() {
-        btnSignIn = (Button) findViewById(R.id.btn_sign);
-        btnSignIn.setOnClickListener(this);
-        etUserName = (EditText) findViewById(R.id.et_username);
-        etPassword = (EditText) findViewById(R.id.et_password);
+    @OnClick(R.id.btn_sign)
+    public void onClickLogin() {
+        mCallback.login(etUserName.getText().toString(), etPassword.getText().toString());
     }
 
     @Override
