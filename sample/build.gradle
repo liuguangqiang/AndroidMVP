@@ -4,6 +4,10 @@ android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
     defaultConfig {
         applicationId "com.liuguangqiang.android.sample"
         minSdkVersion 14
@@ -24,4 +28,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile project(':library')
     compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    compile 'com.squareup.dagger:dagger-compiler:1.2.2'
 }
