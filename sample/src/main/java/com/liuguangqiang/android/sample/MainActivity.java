@@ -34,7 +34,7 @@ public class MainActivity extends MVPActivity implements MainUi {
 
     @Override
     public Presenter setPresenter() {
-        return new MainPresenter();
+        return new MainPresenter(getApplicationContext());
     }
 
     @Override

@@ -1,19 +1,25 @@
 package com.liuguangqiang.android.sample.presenter;
 
+import android.content.Context;
+
 import com.liuguangqiang.android.mvp.Presenter;
+import com.liuguangqiang.android.sample.DemoApplication;
 import com.liuguangqiang.android.sample.model.MainModel;
 import com.liuguangqiang.android.sample.ui.MainUi;
 import com.liuguangqiang.android.sample.ui.MainUiCallback;
+
+import javax.inject.Inject;
 
 /**
  * Created by Eric on 15/5/8.
  */
 public class MainPresenter extends Presenter<MainUi, MainUiCallback> {
 
-    private MainModel mMainModel;
+    @Inject
+    MainModel mMainModel;
 
-    public MainPresenter() {
-        mMainModel = new MainModel();
+    public MainPresenter(Context context) {
+        DemoApplication.from(context).inject(this);
     }
 
     @Override
