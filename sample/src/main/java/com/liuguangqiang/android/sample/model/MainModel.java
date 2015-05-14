@@ -8,9 +8,7 @@ import javax.inject.Inject;
 public class MainModel {
 
     @Inject
-    public MainModel() {
-
-    }
+    public MainModel() {}
 
     public String getShowHello() {
         return "Hi! I am MVP.";
@@ -19,6 +17,5 @@ public class MainModel {
     public String getSuccessTxt() {
         return "congratulations! Login successful!";
     }
-
 
 }
