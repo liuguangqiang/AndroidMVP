@@ -36,7 +36,6 @@ public abstract class Presenter<U extends BaseUi<UC>, UC> {
             checkArgument(ui);
             ui.setUiCallback(null);
             this.mUi = null;
-            onDetachedUi();
         }
     }
 
@@ -50,17 +49,13 @@ public abstract class Presenter<U extends BaseUi<UC>, UC> {
     }
 
     protected void onAttachedUi() {
-        if (onUiAttachedListener != null) onUiAttachedListener.onAttached();
-    }
-
-    protected void onDetachedUi() {
-        if (onUiAttachedListener != null) onUiAttachedListener.onDetached();
+        if (onUiAttachedListener != null) onUiAttachedListener.onAttachedUi();
     }
 
     public interface OnUiAttachedListener {
-        void onAttached();
 
-        void onDetached();
+        void onAttachedUi();
+
     }
 
 }
