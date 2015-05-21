@@ -5,25 +5,39 @@ package com.liuguangqiang.android.mvp;
  */
 public abstract class Presenter<U extends BaseUi<UC>, UC> {
 
+    private OnUiAttachedListener onUiAttachedListener;
+
     private U mUi;
 
     public U getUi() {
         return mUi;
     }
 
-    public synchronized final void attach(U ui) {
-        checkArgument(ui);
+    public void setOnUiAttachedListener(OnUiAttachedListener listener) {
+        onUiAttachedListener = listener;
+    }
 
-        ui.setUiCallback(createUiCallback(ui));
-        populateUi(ui);
-        this.mUi = ui;
+    public boolean isAttachedUi() {
+        return mUi != null;
+    }
+
+    public synchronized final void attach(U ui) {
+        if (!isAttachedUi()) {
+            checkArgument(ui);
+            ui.setUiCallback(createUiCallback(ui));
+            populateUi(ui);
+            this.mUi = ui;
+            onAttachedUi();
+        }
     }
 
     public synchronized final void detach(U ui) {
-        checkArgument(ui);
-
-        ui.setUiCallback(createUiCallback(ui));
-        this.mUi = null;
+        if (isAttachedUi()) {
+            checkArgument(ui);
+            ui.setUiCallback(null);
+            this.mUi = null;
+            onDetachedUi();
+        }
     }
 
     protected abstract void populateUi(U ui);
@@ -31,7 +45,22 @@ public abstract class Presenter<U extends BaseUi<UC>, UC> {
     protected abstract UC createUiCallback(U ui);
 
     private void checkArgument(U ui) {
-        if (ui == null) throw new IllegalArgumentException("Presenter can not attach or detach any null object!");
+        if (ui == null)
+            throw new IllegalArgumentException("Presenter can not attach or detach any null object!");
+    }
+
+    protected void onAttachedUi() {
+        if (onUiAttachedListener != null) onUiAttachedListener.onAttached();
+    }
+
+    protected void onDetachedUi() {
+        if (onUiAttachedListener != null) onUiAttachedListener.onDetached();
+    }
+
+    public interface OnUiAttachedListener {
+        void onAttached();
+
+        void onDetached();
     }
 
 }
